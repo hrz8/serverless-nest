@@ -19,6 +19,8 @@
     "@nestjs/common": "^8.2.3",
     "@nestjs/core": "^8.2.3",
     "@nestjs/platform-express": "^8.2.3",
+    "@nestjsx/crud": "^4.6.2",
+    "@nestjsx/crud-typeorm": "^4.6.2",
     "aws-lambda": "^1.0.7"
   },
   "devDependencies": {
