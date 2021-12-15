@@ -1,0 +1,20 @@
+org: flashcoffee
+app: serverless-test
+service:
+  name: hello-service
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-southeast-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  hello:
+    handler: dist/hello.handler
+    events:
+      - http: 
+          path: hello-service/hello
+          method: get
