@@ -22,6 +22,4 @@ async function bootstrap(): Promise<void> {
   console.info(`Server started at http://localhost:${process.env.APP_PORT}`);
 }
 
-(async function () {
-  await bootstrap();
-});
+bootstrap();

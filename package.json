@@ -6,7 +6,9 @@
   "scripts": {
     "watch": "rm -rf dist && tsc --p tsconfig.json -w",
     "build": "rm -rf dist && tsc --p tsconfig.json -d",
-    "debug": "sls offline --httpPort 4098 --stage dev --skipCacheInvalidation",
+    "start": "nest start",
+    "start:local": "nest start --watch",
+    "sls:offline": "sls offline --httpPort 4098 --stage dev --skipCacheInvalidation",
     "db:sync": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync",
     "db:drop": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
     "db:migrate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
@@ -28,10 +30,13 @@
     "@nestjsx/crud-typeorm": "^4.6.2",
     "aws-lambda": "^1.0.7",
     "aws-serverless-express": "^3.4.0",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mysql2": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.4.0",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
@@ -42,6 +47,7 @@
     "@types/serverless": "^1.78.39",
     "serverless": "^2.69.0",
     "serverless-offline": "^8.3.1",
+    "source-map-support": "^0.5.21",
     "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.4"
   }

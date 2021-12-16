@@ -27,7 +27,7 @@ export function moduleFactory({ host, port, username, password }: IDBConfig): IA
       Todo,
       TodoItem
     ],
-    logging: Boolean(process.env.TYPEORM_LOGGING),
+    logging: process.env.TYPEORM_LOGGING === 'true',
     synchronize: false,
     migrationsTableName: 'migrations',
     migrations: ['src/migration/**/*.ts'],

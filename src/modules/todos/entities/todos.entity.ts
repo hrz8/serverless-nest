@@ -1,5 +1,5 @@
 // deps
-import { Column, Entity, OneToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { IsEnum, IsString, IsUUID } from 'class-validator';
 
 // app
@@ -24,7 +24,12 @@ export default class Todo extends BaseEntity {
   @Column({ default: ETodoStatus.TODO })
   status: ETodoStatus;
 
+  @IsString()
+  @Column({ nullable: false })
+  userId: string
+
   @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @OneToMany(() => TodoItem, (todoItem) => todoItem.id)
