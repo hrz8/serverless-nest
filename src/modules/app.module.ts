@@ -3,13 +3,16 @@ import { Module } from '@nestjs/common';
 
 // app
 import { IDBConfig } from '@/types/dbconfig.interface';
-import { TodosModule } from '@modules/todos/todos.module';
+
+// internal
+import { TodosModule } from './todos/todos.module';
+import { UsersModule } from './users/users.module';
 
 interface IAppModule {}
 
 export function moduleFactory({ host, port, username, password }: IDBConfig): IAppModule {
   @Module({
-    imports: [TodosModule],
+    imports: [TodosModule, UsersModule],
   })
   class AppModule {}
 

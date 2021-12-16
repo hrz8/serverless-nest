@@ -1,6 +1,6 @@
 // deps
-import { Column, Entity, OneToOne } from 'typeorm';
 import { IsNumber, IsString, IsUUID } from 'class-validator';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 // app
 import BaseEntity from '@/base/entity';
@@ -22,6 +22,6 @@ export default class TodoItem extends BaseEntity {
   @Column({ default: 1 })
   qty: number;
 
-  @OneToOne(() => Todo, (todo) => todo.id)
+  @ManyToOne(() => Todo, (todo) => todo.id)
   todo: Todo;
 }
