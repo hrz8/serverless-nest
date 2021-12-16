@@ -3,7 +3,7 @@ import { IsNumber, IsString, IsUUID } from 'class-validator';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 // app
-import BaseEntity from '@/base/entity';
+import BaseEntity from '@base/base.entity';
 
 // internal module
 import Todo from './todos.entity';

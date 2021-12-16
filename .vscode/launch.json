@@ -7,12 +7,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Serverless Local/Offline",
+            "name": "Launch Serverless Local/Offline 🧩",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/node_modules/serverless/bin/serverless",
             "args": ["offline", "--httpPort", "4099", "--stage", "dev", "--skipCacheInvalidation", "--noTimeout"],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Nest 😸",
+            "args": ["${workspaceFolder}/src/server.ts"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
             "console": "integratedTerminal"
         }
     ]

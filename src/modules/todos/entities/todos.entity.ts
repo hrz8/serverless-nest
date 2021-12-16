@@ -3,7 +3,7 @@ import { Column, Entity, OneToMany, ManyToOne } from 'typeorm';
 import { IsEnum, IsString, IsUUID } from 'class-validator';
 
 // app
-import BaseEntity from '@/base/entity';
+import BaseEntity from '@base/base.entity';
 import User from '@modules/users/entities/users.entity';
 
 // internal module

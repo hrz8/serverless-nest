@@ -5,7 +5,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-
 class VersionEntity {
   @Column({ nullable: true })
   appVersionName?: string;

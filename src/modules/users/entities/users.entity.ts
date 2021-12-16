@@ -3,7 +3,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { IsString, IsUUID } from 'class-validator';
 
 // app
-import BaseEntity from '@/base/entity';
+import BaseEntity from '@base/base.entity';
 import Todo from '@modules/todos/entities/todos.entity';
 
 @Entity('users')

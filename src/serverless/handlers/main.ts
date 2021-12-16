@@ -47,7 +47,10 @@ const serverFactory = async ({ host, port, username, password }: IDBConfig): Pro
   }
 }
 
-export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> => {
+export const handler: APIGatewayProxyHandler = async (
+  event: APIGatewayProxyEvent,
+  context: Context
+): Promise<APIGatewayProxyResult> => {
   if (!cachedServers) {
     const server = await serverFactory({
       host: process.env.TYPEORM_HOST,
