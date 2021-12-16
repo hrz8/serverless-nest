@@ -10,7 +10,8 @@ import User from '../entities/users.entity';
 @Injectable()
 export default class UserService extends TypeOrmCrudService<User> {
   constructor(
-    @InjectRepository(User) protected readonly repo: Repository<User>
+    @InjectRepository(User)
+    protected readonly repo: Repository<User>
   ) {
     super(repo)
   }

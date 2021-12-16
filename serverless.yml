@@ -13,7 +13,7 @@ plugins:
 
 functions:
   hello:
-    handler: dist/hello.handler
+    handler: dist/serverless/handlers/hello.handler
     events:
       - http: 
           path: hello-service/hello
