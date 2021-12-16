@@ -20,7 +20,7 @@
             "request": "launch",
             "name": "Launch Nest 😸",
             "args": ["${workspaceFolder}/src/server.ts"],
-            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
             "sourceMaps": true,
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
