@@ -1,0 +1,26 @@
+api:
+  handler: dist/serverless/handlers/api.handler
+  events:
+    - http:
+        method: any
+        path: '/todos'
+        cors: true
+    - http:
+        method: any
+        path: '/todos/{proxy+}'
+        cors: true
+    - http:
+        method: any
+        path: '/users'
+        cors: true
+    - http:
+        method: any
+        path: '/users/{proxy+}'
+        cors: true
+
+hello:
+  handler: dist/serverless/handlers/hello.handler
+  events:
+    - http: 
+        method: get
+        path: /todos-service/hello
