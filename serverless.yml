@@ -9,12 +9,33 @@ provider:
   region: ap-southeast-1
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-offline
 
 functions:
+  main:
+    handler: dist/serverless/handlers/main.handler
+    events:
+      - http:
+          method: any
+          path: '/todos'
+          cors: true
+      - http:
+          method: any
+          path: '/todos/{proxy+}'
+          cors: true
+      - http:
+          method: any
+          path: '/users'
+          cors: true
+      - http:
+          method: any
+          path: '/users/{proxy+}'
+          cors: true
+
   hello:
     handler: dist/serverless/handlers/hello.handler
     events:
       - http: 
-          path: hello-service/hello
           method: get
+          path: /hello-service/hello

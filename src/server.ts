@@ -1,3 +1,4 @@
+// deps
 import {NestFactory} from '@nestjs/core';
 import {moduleFactory} from '@modules/app.module';
 import dotenv = require('dotenv');

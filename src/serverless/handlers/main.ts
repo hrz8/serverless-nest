@@ -5,10 +5,13 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { createServer, proxy } from 'aws-serverless-express';
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
+import dotenv = require('dotenv');
 
 // app
 import { moduleFactory } from '@modules/app.module';
 import { IDBConfig } from '@/types/dbconfig.interface';
+
+dotenv.config();
 
 const binaryMimeTypes: string[] = [];
 
@@ -37,7 +40,11 @@ const serverFactory = async ({ host, port, username, password }: IDBConfig): Pro
         port,
       }),
       adapter,
-    ).then(() => createServer(expressApp, undefined, binaryMimeTypes));
+    )
+    .then((app) => {
+      return app.init();
+    })
+    .then(() => createServer(expressApp, undefined, binaryMimeTypes));
   
     return server;
   } catch (error) {

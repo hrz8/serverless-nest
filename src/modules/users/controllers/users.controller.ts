@@ -1,5 +1,5 @@
 // deps
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { Crud } from '@nestjsx/crud';
 
 // internal module
@@ -16,4 +16,11 @@ export default class UserController {
   constructor(
     protected readonly service: UserService
   ) {}
+
+  @Get('test')
+  async hello() {
+    return {
+      test: "Hello world!"
+    }
+  }
 }
