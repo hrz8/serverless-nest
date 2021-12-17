@@ -1,7 +1,6 @@
 org: flashcoffee
-app: serverless-test
-service:
-  name: hello-service
+app: serverless-nest
+service: todos-service
 
 provider:
   name: aws
@@ -13,8 +12,8 @@ plugins:
   - serverless-offline
 
 functions:
-  main:
-    handler: dist/serverless/handlers/main.handler
+  api:
+    handler: dist/serverless/handlers/api.handler
     events:
       - http:
           method: any
