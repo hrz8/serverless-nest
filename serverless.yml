@@ -12,3 +12,6 @@ plugins:
   - serverless-offline
 
 functions: ${file(serverless-function.yml)}
+
+resources:
+  - Resources: ${file(serverless-resources.yml)}
