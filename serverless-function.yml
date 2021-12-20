@@ -18,6 +18,13 @@ api:
         path: '/users/{proxy+}'
         cors: true
 
+someFunction:
+  handler: dist/serverless/handlers/sns.someFunction
+  events:
+    - sns:
+        arn: !Ref someFunction
+        topicName: todos-some-function
+
 hello:
   handler: dist/serverless/handlers/hello.handler
   events:

@@ -1,0 +1,5 @@
+someFunction:
+  Type: AWS::SNS::Topic
+  Properties:
+    DisplayName: 'Process Some Function'
+    TopicName: todos-some-function
