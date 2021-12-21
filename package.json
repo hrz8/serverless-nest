@@ -48,7 +48,6 @@
     "serverless": "^2.69.0",
     "serverless-dotenv-plugin": "^3.10.0",
     "serverless-offline": "^8.3.1",
-    "serverless-plugin-typescript": "^2.1.0",
     "serverless-tscpaths": "^0.0.5",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.4.0",

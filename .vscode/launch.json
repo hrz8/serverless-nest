@@ -36,6 +36,9 @@
                 "--skipCacheInvalidation",
                 "--noTimeout"
             ],
+            "env": {
+                "SLS_DEBUG": "*"
+            },
             "console": "integratedTerminal"
         },
         {
@@ -56,6 +59,9 @@
                 "--data",
                 "${input:slsFunctionMessage}"
             ],
+            "env": {
+                "SLS_DEBUG": "*"
+            },
             "console": "integratedTerminal"
         },
         {
