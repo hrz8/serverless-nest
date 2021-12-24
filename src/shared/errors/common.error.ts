@@ -1,6 +1,16 @@
 import { HttpStatus } from "@nestjs/common";
 import { BaseError, EExceptionCode } from "~/src/base/base.error";
 
+
+export class PayloadValidationError extends BaseError {
+  constructor(public message: string) {
+    super(
+      message,
+      EExceptionCode.PAYLOAD_VALIDATION_FAIL,
+      HttpStatus.BAD_REQUEST,
+    );
+  }
+}
 export class UnableToProceedError extends BaseError {
   constructor(public message: string) {
     super(
@@ -50,14 +60,3 @@ export class DeliveryExceedMaximalDistanceError extends BaseError {
     );
   }
 }
-
-export class PayloadValidationError extends BaseError {
-  constructor(public message: string) {
-    super(
-      message,
-      EExceptionCode.PAYLOAD_VALIDATION_FAIL,
-      HttpStatus.BAD_REQUEST,
-    );
-  }
-}
-
