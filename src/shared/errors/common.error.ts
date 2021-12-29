@@ -1,7 +1,6 @@
 import { HttpStatus } from "@nestjs/common";
 import { BaseError, EExceptionCode } from "~/src/base/base.error";
 
-
 export class PayloadValidationError extends BaseError {
   constructor(public message: string) {
     super(
@@ -11,6 +10,7 @@ export class PayloadValidationError extends BaseError {
     );
   }
 }
+
 export class UnableToProceedError extends BaseError {
   constructor(public message: string) {
     super(

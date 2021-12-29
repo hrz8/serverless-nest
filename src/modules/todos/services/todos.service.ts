@@ -15,4 +15,8 @@ export default class TodoService extends TypeOrmCrudService<Todo> {
   ) {
     super(repo)
   }
+
+  public async sendSNS() {
+    console.log("send")
+  }
 }

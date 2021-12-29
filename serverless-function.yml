@@ -25,6 +25,13 @@ someFunction:
         arn: !Ref someFunction
         topicName: todos-some-function
 
+successCreated:
+  handler: dist/serverless/handlers/sns.successCreated
+  events:
+    - sns:
+        arn: !Ref successCreated
+        topicName: todos-success-created
+
 hello:
   handler: dist/serverless/handlers/hello.handler
   events:

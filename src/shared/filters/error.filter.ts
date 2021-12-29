@@ -10,7 +10,7 @@ export class ErrorFilter implements ExceptionFilter {
 
     const errorResponse = {
       code: exception.getStatusCode(),
-      errorCode,
+      errorCode: errorCode,
       message: exception.message || null,
     };
 
