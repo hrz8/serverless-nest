@@ -8,8 +8,9 @@ import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult, Co
 import dotenv = require('dotenv');
 
 // app
-import { moduleFactory } from '@modules/app.module';
+import { AppModuleFactory } from '@modules/app.module';
 import { IDBConfig } from '@/types/dbconfig.interface';
+import { IRedisConfig } from '@/types/redisconfig.interface';
 
 dotenv.config();
 
@@ -25,25 +26,23 @@ process.on('uncaughtException', (reason) => {
   console.error(reason);
 });
 
-const serverFactory = async ({ host, port, username, password }: IDBConfig): Promise<Server> => {
+const ExpressServerFactory = async (
+  dbConfig: IDBConfig,
+  redisConfig: IRedisConfig
+): Promise<Server> => {
   try {
     console.info('attempt to running service');
     const expressApp = express();
   
     const adapter = new ExpressAdapter(expressApp);
   
+    const AppModule = AppModuleFactory(dbConfig, redisConfig)
+
     const server = await NestFactory.create(
-      moduleFactory({
-        host,
-        password,
-        username,
-        port,
-      }),
+      AppModule,
       adapter,
     )
-    .then((app) => {
-      return app.init();
-    })
+    .then((app) => app.init())
     .then(() => createServer(expressApp, undefined, binaryMimeTypes));
   
     return server;
@@ -59,14 +58,22 @@ export const handler: APIGatewayProxyHandler = async (
   context: Context
 ): Promise<APIGatewayProxyResult> => {
   if (!cachedServers) {
-    const server = await serverFactory({
+    const dbConfig: IDBConfig = {
       host: process.env.TYPEORM_HOST,
       port: Number(process.env.TYPEORM_PORT),
       username: process.env.TYPEORM_USERNAME,
-      password: process.env.TYPEORM_PASSWORD
-    });
+      password: process.env.TYPEORM_PASSWORD,
+    };
 
-    cachedServers = server;
+    const redisConfig: IRedisConfig = {
+      host: process.env.REDIS_HOST,
+      port: Number(process.env.REDIS_PORT),
+      ttl: Number(process.env.REDIS_TTL),
+    };
+
+    const expressServer = await ExpressServerFactory(dbConfig, redisConfig);
+
+    cachedServers = expressServer;
   }
 
   return proxy(cachedServers, event, context, 'PROMISE').promise;

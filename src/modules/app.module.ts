@@ -6,15 +6,19 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { IDBConfig } from '@/types/dbconfig.interface';
 
 // internal
+import { RedisModuleFactory } from './redis.module';
 import { TodosModule } from './todos/todos.module';
 import { UsersModule } from './users/users.module';
 import User from './users/entities/users.entity';
 import Todo from './todos/entities/todos.entity';
 import TodoItem from './todos/entities/todoItems.entity';
+import { IRedisConfig } from '../types/redisconfig.interface';
 
-interface IAppModule {}
 
-export function moduleFactory({ host, port, username, password }: IDBConfig): IAppModule {
+export function AppModuleFactory(
+  { host, port, username, password }: IDBConfig,
+  redisConfig: IRedisConfig
+): any {
   const typeORMConfig: TypeOrmModuleOptions = {
     type: 'mysql',
     host,
@@ -39,6 +43,7 @@ export function moduleFactory({ host, port, username, password }: IDBConfig): IA
   @Module({
     imports: [
       TypeOrmModule.forRoot(typeORMConfig),
+      RedisModuleFactory(redisConfig),
       TodosModule,
       UsersModule
     ],

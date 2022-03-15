@@ -31,10 +31,3 @@ successCreated:
     - sns:
         arn: !Ref successCreated
         topicName: todos-success-created
-
-hello:
-  handler: dist/serverless/handlers/hello.handler
-  events:
-    - http: 
-        method: get
-        path: /todos-service/hello
